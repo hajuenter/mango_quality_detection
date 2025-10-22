@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+venv/
+.env
+
+ml/dataset/
+ml/models/
+
+*.log
+*.tmp
+
+.vscode/
+.idea/
