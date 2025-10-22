@@ -4,10 +4,11 @@ venv/
 .env
 
 ml/dataset/
-ml/models/
+ml/results/mango_quality_cls/
 
 *.log
 *.tmp
 
 .vscode/
 .idea/
+yolov8s-cls.pt
