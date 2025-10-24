@@ -1,0 +1,106 @@
+{
+    "model_path": "ml/models/random_forest/random_forest_mango.pkl",
+    "total_features": 16,
+    "color_features": 6,
+    "texture_features": 10,
+    "feature_importances": {
+        "R_mean": 0.08889293267874525,
+        "G_mean": 0.039464871901796615,
+        "B_mean": 0.05309252367611921,
+        "R_std": 0.05130993599440325,
+        "G_std": 0.0540991738889032,
+        "B_std": 0.15098091150793327,
+        "LBP_bin_0": 0.05644210007487154,
+        "LBP_bin_1": 0.06962955953581611,
+        "LBP_bin_2": 0.05313834171550729,
+        "LBP_bin_3": 0.06037873621802512,
+        "LBP_bin_4": 0.05903552453319991,
+        "LBP_bin_5": 0.060904814839963156,
+        "LBP_bin_6": 0.07403453305070518,
+        "LBP_bin_7": 0.03596789463423624,
+        "LBP_bin_8": 0.05377022712160279,
+        "LBP_bin_9": 0.03885791862817189
+    },
+    "top_features": [
+        {
+            "rank": 1,
+            "feature_name": "B_std",
+            "importance": 0.15098091150793327
+        },
+        {
+            "rank": 2,
+            "feature_name": "R_mean",
+            "importance": 0.08889293267874525
+        },
+        {
+            "rank": 3,
+            "feature_name": "LBP_bin_6",
+            "importance": 0.07403453305070518
+        },
+        {
+            "rank": 4,
+            "feature_name": "LBP_bin_1",
+            "importance": 0.06962955953581611
+        },
+        {
+            "rank": 5,
+            "feature_name": "LBP_bin_5",
+            "importance": 0.060904814839963156
+        },
+        {
+            "rank": 6,
+            "feature_name": "LBP_bin_3",
+            "importance": 0.06037873621802512
+        },
+        {
+            "rank": 7,
+            "feature_name": "LBP_bin_4",
+            "importance": 0.05903552453319991
+        },
+        {
+            "rank": 8,
+            "feature_name": "LBP_bin_0",
+            "importance": 0.05644210007487154
+        },
+        {
+            "rank": 9,
+            "feature_name": "G_std",
+            "importance": 0.0540991738889032
+        },
+        {
+            "rank": 10,
+            "feature_name": "LBP_bin_8",
+            "importance": 0.05377022712160279
+        },
+        {
+            "rank": 11,
+            "feature_name": "LBP_bin_2",
+            "importance": 0.05313834171550729
+        },
+        {
+            "rank": 12,
+            "feature_name": "B_mean",
+            "importance": 0.05309252367611921
+        },
+        {
+            "rank": 13,
+            "feature_name": "R_std",
+            "importance": 0.05130993599440325
+        },
+        {
+            "rank": 14,
+            "feature_name": "G_mean",
+            "importance": 0.039464871901796615
+        },
+        {
+            "rank": 15,
+            "feature_name": "LBP_bin_9",
+            "importance": 0.03885791862817189
+        },
+        {
+            "rank": 16,
+            "feature_name": "LBP_bin_7",
+            "importance": 0.03596789463423624
+        }
+    ]
+}

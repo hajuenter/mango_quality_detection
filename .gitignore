@@ -4,7 +4,7 @@ venv/
 .env
 
 ml/dataset/
-ml/results/mango_quality_cls/
+ml/models/
 
 *.log
 *.tmp
