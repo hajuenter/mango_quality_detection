@@ -1,0 +1,32 @@
+Memulai training Random Forest...
+
+Loading dari ml/dataset/mango_dataset_ml_v2_split/train...
+  - mango_healthy: 1269 images
+  - mango_rotten: 1572 images
+Loading dari ml/dataset/mango_dataset_ml_v2_split/val...
+  - mango_healthy: 272 images
+  - mango_rotten: 337 images
+Loading dari ml/dataset/mango_dataset_ml_v2_split/test...
+  - mango_healthy: 272 images
+  - mango_rotten: 338 images
+
+ Dataset loaded: Train=2841, Val=609, Test=610, Feature dim=16
+
+ Hyperparameter Tuning (max_depth)...
+max_depth=   2 | Train Acc: 0.7955 | Val Acc: 0.7931
+max_depth=   4 | Train Acc: 0.9036 | Val Acc: 0.8768
+max_depth=   6 | Train Acc: 0.9528 | Val Acc: 0.9212
+max_depth=   8 | Train Acc: 0.9771 | Val Acc: 0.9360
+max_depth=  10 | Train Acc: 0.9891 | Val Acc: 0.9442
+max_depth=None | Train Acc: 0.9958 | Val Acc: 0.9507
+
+ Best max_depth: None, Validation Accuracy: 0.9507
+
+ Model disimpan ke: ml/models/random_forest\random_forest_mango.pkl
+Hasil training JSON disimpan ke: ml/results/random_forest/train\training_results.json
+Grafik training-validation disimpan
+Grafik overfitting disimpan
+Tabel summary disimpan
+
+ Training selesai tanpa error!
+Semua hasil tersimpan di: ml/results/random_forest/train

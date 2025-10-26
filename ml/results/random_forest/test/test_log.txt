@@ -1,0 +1,31 @@
+Loading model...
+Loading test dataset...
+Predicting...
+Hasil test disimpan ke: ml/results/random_forest/test\test_results.json
+Confusion matrix disimpan
+Per-class metrics disimpan
+Overall metrics disimpan
+
+==================================================
+HASIL EVALUASI TEST SET
+==================================================
+Akurasi Test: 0.9623
+Precision: 0.9624
+Recall: 0.9623
+F1-Score: 0.9623
+
+Confusion Matrix:
+[[258  14]
+ [  9 329]]
+
+Classification Report:
+               precision    recall  f1-score   support
+
+mango_healthy       0.97      0.95      0.96       272
+ mango_rotten       0.96      0.97      0.97       338
+
+     accuracy                           0.96       610
+    macro avg       0.96      0.96      0.96       610
+ weighted avg       0.96      0.96      0.96       610
+
+==================================================

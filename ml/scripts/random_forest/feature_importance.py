@@ -1,8 +1,10 @@
 import os
+import shutil
 import json
 import numpy as np
 import matplotlib.pyplot as plt
 import joblib
+import sys
 
 from features import IMAGE_SIZE, LBP_P, LBP_R
 
@@ -11,10 +13,16 @@ MODEL_PATH = "ml/models/random_forest/random_forest_mango.pkl"
 RESULTS_DIR = "ml/results/random_forest/features"
 # ---------------------------------
 
+# Hapus folder lama jika ada
+if os.path.exists(RESULTS_DIR):
+    shutil.rmtree(RESULTS_DIR)
 os.makedirs(RESULTS_DIR, exist_ok=True)
 
-# Load model
-print("📦 Loading model...")
+# Redirect print ke file log
+log_path = os.path.join(RESULTS_DIR, "feature_importance_log.txt")
+sys.stdout = open(log_path, "w")
+
+print("Loading model...")
 rf_model = joblib.load(MODEL_PATH)
 
 # Dapatkan feature importance
@@ -30,7 +38,7 @@ feature_names = ["R_mean", "G_mean", "B_mean", "R_std", "G_std", "B_std"] + [
 
 # Top N fitur
 n_features = len(importances)
-top_n = min(20, n_features)  # pastikan tidak lebih dari jumlah fitur
+top_n = min(20, n_features)
 
 # Urutkan indeks
 indices = np.argsort(importances)[::-1]
@@ -39,7 +47,7 @@ top_importances = importances[top_indices]
 top_names = [feature_names[i] for i in top_indices]
 
 # Print Top N
-print(f"\n📊 Top {top_n} Most Important Features:")
+print(f"\nTop {top_n} Most Important Features:")
 print("=" * 50)
 for i, idx in enumerate(top_indices):
     print(f"{i+1:2d}. {feature_names[idx]:15s} : {importances[idx]:.6f}")
@@ -66,7 +74,7 @@ importance_data = {
 json_path = os.path.join(RESULTS_DIR, "feature_importance.json")
 with open(json_path, "w") as f:
     json.dump(importance_data, f, indent=4)
-print(f"\n✅ Feature importance disimpan ke: {json_path}")
+print(f"\nFeature importance disimpan ke: {json_path}")
 
 # ========== VISUALISASI ==========
 
@@ -78,7 +86,7 @@ plt.yticks(range(top_n), top_names)
 plt.xlabel("Importance", fontweight="bold")
 plt.ylabel("Feature", fontweight="bold")
 plt.title(
-    f"Top {top_n} Most Important Features\n(Blue: Color, Red: Texture)",
+    f"Top {top_n} Most Important Features (Blue: Color, Red: Texture)",
     fontsize=14,
     fontweight="bold",
 )
@@ -86,19 +94,19 @@ plt.gca().invert_yaxis()
 plt.grid(axis="x", alpha=0.3)
 plt.tight_layout()
 plt.savefig(os.path.join(RESULTS_DIR, "top_feature_importance.png"), dpi=300)
-print(f"✅ Top feature importance disimpan")
+print(f"Top feature importance disimpan")
 
 # 2. Color vs Texture Feature Importance
 color_importance = importances[:n_color_features].sum()
 texture_importance = importances[n_color_features:].sum()
 
 plt.figure(figsize=(10, 6))
-categories = ["Color Features\n(RGB mean + std)", "Texture Features\n(LBP histogram)"]
+categories = ["Color Features (RGB mean + std)", "Texture Features (LBP histogram)"]
 values = [color_importance, texture_importance]
 colors_pie = ["#3498db", "#e74c3c"]
 
 plt.subplot(1, 2, 1)
-wedges, texts, autotexts = plt.pie(
+plt.pie(
     values,
     labels=categories,
     autopct="%1.1f%%",
@@ -106,9 +114,6 @@ wedges, texts, autotexts = plt.pie(
     startangle=90,
     explode=(0.05, 0.05),
 )
-for autotext in autotexts:
-    autotext.set_color("white")
-    autotext.set_fontweight("bold")
 plt.title("Feature Type Contribution", fontweight="bold")
 
 plt.subplot(1, 2, 2)
@@ -119,7 +124,7 @@ plt.grid(axis="y", alpha=0.3)
 
 plt.tight_layout()
 plt.savefig(os.path.join(RESULTS_DIR, "feature_type_comparison.png"), dpi=300)
-print(f"✅ Feature type comparison disimpan")
+print(f"Feature type comparison disimpan")
 
 # 3. Individual Color Feature Contribution
 plt.figure(figsize=(10, 6))
@@ -134,7 +139,7 @@ plt.xticks(rotation=45, ha="right")
 plt.grid(axis="y", alpha=0.3)
 plt.tight_layout()
 plt.savefig(os.path.join(RESULTS_DIR, "color_feature_importance.png"), dpi=300)
-print(f"✅ Color feature importance disimpan")
+print(f"Color feature importance disimpan")
 
 # 4. LBP Histogram Distribution
 plt.figure(figsize=(14, 6))
@@ -157,10 +162,10 @@ plt.grid(axis="y", alpha=0.3)
 
 plt.tight_layout()
 plt.savefig(os.path.join(RESULTS_DIR, "lbp_importance_distribution.png"), dpi=300)
-print(f"✅ LBP importance distribution disimpan")
+print(f"LBP importance distribution disimpan")
 
 plt.close("all")
 print("\n" + "=" * 50)
-print("✅ Feature importance analysis selesai!")
-print(f"   Hasil disimpan di: {RESULTS_DIR}")
+print("Feature importance analysis selesai!")
+print(f"Hasil disimpan di: {RESULTS_DIR}")
 print("=" * 50)

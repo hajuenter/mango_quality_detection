@@ -1,4 +1,5 @@
 import os
+import shutil
 import json
 import numpy as np
 import matplotlib.pyplot as plt
@@ -11,6 +12,7 @@ from sklearn.metrics import (
 )
 from datetime import datetime
 import joblib
+import sys
 
 from features import extract_features
 
@@ -20,15 +22,19 @@ MODEL_PATH = "ml/models/random_forest/random_forest_mango.pkl"
 RESULTS_DIR = "ml/results/random_forest/test"
 # ---------------------------------
 
-# Buat folder hasil jika belum ada
+# Hapus folder hasil lama jika ada
+if os.path.exists(RESULTS_DIR):
+    shutil.rmtree(RESULTS_DIR)
 os.makedirs(RESULTS_DIR, exist_ok=True)
 
-# Load model
-print("📦 Loading model...")
+# Redirect print ke file log
+log_path = os.path.join(RESULTS_DIR, "test_log.txt")
+sys.stdout = open(log_path, "w")
+
+print("Loading model...")
 rf_best = joblib.load(MODEL_PATH)
 
-# Load test dataset
-print("📂 Loading test dataset...")
+print("Loading test dataset...")
 X_test, y_test = [], []
 classes = sorted(
     [d for d in os.listdir(TEST_DIR) if os.path.isdir(os.path.join(TEST_DIR, d))]
@@ -49,7 +55,7 @@ X_test = np.array(X_test)
 y_test = np.array(y_test)
 
 # Prediksi
-print("🔮 Predicting...")
+print("Predicting...")
 y_pred = rf_best.predict(X_test)
 
 # Hitung metrik
@@ -91,7 +97,7 @@ json_path = os.path.join(RESULTS_DIR, "test_results.json")
 with open(json_path, "w") as f:
     json.dump(results, f, indent=4)
 
-print(f"\n✅ Hasil test disimpan ke: {json_path}")
+print(f"Hasil test disimpan ke: {json_path}")
 
 # ========== VISUALISASI ==========
 
@@ -111,10 +117,9 @@ plt.ylabel("True Label")
 plt.xlabel("Predicted Label")
 plt.tight_layout()
 plt.savefig(os.path.join(RESULTS_DIR, "confusion_matrix.png"), dpi=300)
-print(f"✅ Confusion matrix disimpan")
+print(f"Confusion matrix disimpan")
 
 # 2. Per-Class Metrics Bar Chart
-plt.figure(figsize=(12, 6))
 metrics_data = {
     "Precision": [results["per_class_metrics"][cls]["precision"] for cls in classes],
     "Recall": [results["per_class_metrics"][cls]["recall"] for cls in classes],
@@ -140,12 +145,11 @@ ax.grid(axis="y", alpha=0.3)
 
 plt.tight_layout()
 plt.savefig(os.path.join(RESULTS_DIR, "per_class_metrics.png"), dpi=300)
-print(f"✅ Per-class metrics disimpan")
+print(f"Per-class metrics disimpan")
 
-# 3. Overall Metrics Pie/Bar
+# 3. Overall Metrics Bar
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5))
 
-# Overall metrics bar
 overall_metrics = ["Accuracy", "Precision", "Recall", "F1-Score"]
 overall_values = [accuracy, precision, recall, f1]
 colors = ["#2ecc71", "#3498db", "#e74c3c", "#f39c12"]
@@ -181,13 +185,13 @@ ax2.grid(axis="y", alpha=0.3)
 
 plt.tight_layout()
 plt.savefig(os.path.join(RESULTS_DIR, "overall_metrics.png"), dpi=300)
-print(f"✅ Overall metrics disimpan")
+print(f"Overall metrics disimpan")
 
 plt.close("all")
 
-# Cetak ringkasan ke console
+# Cetak ringkasan ke log
 print("\n" + "=" * 50)
-print("📊 HASIL EVALUASI TEST SET")
+print("HASIL EVALUASI TEST SET")
 print("=" * 50)
 print(f"Akurasi Test: {accuracy:.4f}")
 print(f"Precision: {precision:.4f}")

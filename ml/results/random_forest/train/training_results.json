@@ -1,14 +1,18 @@
 {
-    "timestamp": "2025-10-24 19:16:29",
+    "timestamp": "2025-10-26 08:39:47",
     "model_type": "RandomForestClassifier",
     "hyperparameters": {
         "n_estimators": 100,
         "best_max_depth": null,
-        "random_state": 42
+        "random_state": 42,
+        "min_samples_split": 4,
+        "min_samples_leaf": 2,
+        "max_features": "sqrt"
     },
     "dataset": {
         "train_samples": 2841,
         "val_samples": 609,
+        "test_samples": 610,
         "feature_dimension": 16,
         "classes": [
             "mango_healthy",
@@ -26,23 +30,24 @@
         ],
         "train_accuracy": [
             0.7954945441745864,
-            0.9039070749736009,
-            0.9542414642731433,
-            0.9795846532910947,
-            0.9933122140091517,
-            1.0
+            0.9035550862372405,
+            0.9528335093277015,
+            0.9771207321365716,
+            0.9890883491728265,
+            0.9957761351636748
         ],
         "val_accuracy": [
             0.7931034482758621,
             0.8768472906403941,
-            0.9178981937602627,
-            0.9326765188834154,
-            0.9507389162561576,
-            0.9605911330049262
+            0.9211822660098522,
+            0.9359605911330049,
+            0.9441707717569786,
+            0.9507389162561576
         ]
     },
     "final_results": {
-        "train_accuracy": 1.0,
-        "val_accuracy": 0.9605911330049262
+        "train_accuracy": 0.9957761351636748,
+        "val_accuracy": 0.9507389162561576,
+        "test_accuracy": 0.9622950819672131
     }
 }
