@@ -1,106 +1,137 @@
 {
     "model_path": "ml/models/random_forest/random_forest_mango.pkl",
-    "total_features": 16,
-    "color_features": 6,
-    "texture_features": 10,
+    "total_features": 29,
     "feature_importances": {
-        "R_mean": 0.08980262579589102,
-        "G_mean": 0.03776540183755823,
-        "B_mean": 0.061123247065491375,
-        "R_std": 0.054686501933809764,
-        "G_std": 0.057035247607193154,
-        "B_std": 0.15370504446320235,
-        "LBP_bin_0": 0.05207480939176423,
-        "LBP_bin_1": 0.06525259300763261,
-        "LBP_bin_2": 0.06141568034789152,
-        "LBP_bin_3": 0.0583449505593843,
-        "LBP_bin_4": 0.058915050529649404,
-        "LBP_bin_5": 0.05849592249998527,
-        "LBP_bin_6": 0.06761088779240497,
-        "LBP_bin_7": 0.03576806780575851,
-        "LBP_bin_8": 0.056760085073225795,
-        "LBP_bin_9": 0.03124388428915761
+        "R_mean": 0.023630456881510546,
+        "G_mean": 0.011989408486563793,
+        "B_mean": 0.015531077615600476,
+        "R_std": 0.016696302870052922,
+        "G_std": 0.022119812250959166,
+        "B_std": 0.04975398581346805,
+        "H_mean": 0.07378811654276869,
+        "S_mean": 0.0195551401950126,
+        "V_mean": 0.010833207810404356,
+        "H_std": 0.024965779548498507,
+        "S_std": 0.013471064347588704,
+        "V_std": 0.06364818214760197,
+        "LBP_bin_0": 0.021670152726680925,
+        "LBP_bin_1": 0.03334723123488214,
+        "LBP_bin_2": 0.028152895980850988,
+        "LBP_bin_3": 0.03266262905085966,
+        "LBP_bin_4": 0.047500461105339,
+        "LBP_bin_5": 0.01886645982141928,
+        "LBP_bin_6": 0.04226351550730134,
+        "LBP_bin_7": 0.021877456445254614,
+        "LBP_bin_8": 0.02684322148163095,
+        "LBP_bin_9": 0.022468463480065596,
+        "edge_density": 0.12301509101094064,
+        "num_contours": 0.06710371258113808,
+        "smoothness": 0.04711935643769821,
+        "entropy": 0.03373973004953198,
+        "contrast": 0.04285727060417794,
+        "skewness": 0.028735511883392927,
+        "kurtosis": 0.01579430608880575
     },
     "top_features": [
         {
             "rank": 1,
-            "feature_name": "B_std",
-            "importance": 0.15370504446320235
+            "feature_name": "edge_density",
+            "importance": 0.12301509101094064
         },
         {
             "rank": 2,
-            "feature_name": "R_mean",
-            "importance": 0.08980262579589102
+            "feature_name": "H_mean",
+            "importance": 0.07378811654276869
         },
         {
             "rank": 3,
-            "feature_name": "LBP_bin_6",
-            "importance": 0.06761088779240497
+            "feature_name": "num_contours",
+            "importance": 0.06710371258113808
         },
         {
             "rank": 4,
-            "feature_name": "LBP_bin_1",
-            "importance": 0.06525259300763261
+            "feature_name": "V_std",
+            "importance": 0.06364818214760197
         },
         {
             "rank": 5,
-            "feature_name": "LBP_bin_2",
-            "importance": 0.06141568034789152
+            "feature_name": "B_std",
+            "importance": 0.04975398581346805
         },
         {
             "rank": 6,
-            "feature_name": "B_mean",
-            "importance": 0.061123247065491375
+            "feature_name": "LBP_bin_4",
+            "importance": 0.047500461105339
         },
         {
             "rank": 7,
-            "feature_name": "LBP_bin_4",
-            "importance": 0.058915050529649404
+            "feature_name": "smoothness",
+            "importance": 0.04711935643769821
         },
         {
             "rank": 8,
-            "feature_name": "LBP_bin_5",
-            "importance": 0.05849592249998527
+            "feature_name": "contrast",
+            "importance": 0.04285727060417794
         },
         {
             "rank": 9,
-            "feature_name": "LBP_bin_3",
-            "importance": 0.0583449505593843
+            "feature_name": "LBP_bin_6",
+            "importance": 0.04226351550730134
         },
         {
             "rank": 10,
-            "feature_name": "G_std",
-            "importance": 0.057035247607193154
+            "feature_name": "entropy",
+            "importance": 0.03373973004953198
         },
         {
             "rank": 11,
-            "feature_name": "LBP_bin_8",
-            "importance": 0.056760085073225795
+            "feature_name": "LBP_bin_1",
+            "importance": 0.03334723123488214
         },
         {
             "rank": 12,
-            "feature_name": "R_std",
-            "importance": 0.054686501933809764
+            "feature_name": "LBP_bin_3",
+            "importance": 0.03266262905085966
         },
         {
             "rank": 13,
-            "feature_name": "LBP_bin_0",
-            "importance": 0.05207480939176423
+            "feature_name": "skewness",
+            "importance": 0.028735511883392927
         },
         {
             "rank": 14,
-            "feature_name": "G_mean",
-            "importance": 0.03776540183755823
+            "feature_name": "LBP_bin_2",
+            "importance": 0.028152895980850988
         },
         {
             "rank": 15,
-            "feature_name": "LBP_bin_7",
-            "importance": 0.03576806780575851
+            "feature_name": "LBP_bin_8",
+            "importance": 0.02684322148163095
         },
         {
             "rank": 16,
+            "feature_name": "H_std",
+            "importance": 0.024965779548498507
+        },
+        {
+            "rank": 17,
+            "feature_name": "R_mean",
+            "importance": 0.023630456881510546
+        },
+        {
+            "rank": 18,
             "feature_name": "LBP_bin_9",
-            "importance": 0.03124388428915761
+            "importance": 0.022468463480065596
+        },
+        {
+            "rank": 19,
+            "feature_name": "G_std",
+            "importance": 0.022119812250959166
+        },
+        {
+            "rank": 20,
+            "feature_name": "LBP_bin_7",
+            "importance": 0.021877456445254614
         }
     ]
 }

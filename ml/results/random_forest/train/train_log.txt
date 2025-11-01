@@ -10,22 +10,46 @@ Loading dari ml/dataset/mango_dataset_ml_v2_split/test...
   - mango_healthy: 272 images
   - mango_rotten: 338 images
 
- Dataset loaded: Train=2841, Val=609, Test=610, Feature dim=16
+Dataset loaded: Train=2841, Val=609, Test=610, Feature dim=29
 
- Hyperparameter Tuning (max_depth)...
-max_depth=   2 | Train Acc: 0.7955 | Val Acc: 0.7931
-max_depth=   4 | Train Acc: 0.9036 | Val Acc: 0.8768
-max_depth=   6 | Train Acc: 0.9528 | Val Acc: 0.9212
-max_depth=   8 | Train Acc: 0.9771 | Val Acc: 0.9360
-max_depth=  10 | Train Acc: 0.9891 | Val Acc: 0.9442
-max_depth=None | Train Acc: 0.9958 | Val Acc: 0.9507
+=== Distribusi Dataset ===
+Train: {np.str_('mango_healthy'): 1269, np.str_('mango_rotten'): 1572}
+Val: {np.str_('mango_healthy'): 272, np.str_('mango_rotten'): 337}
+Test: {np.str_('mango_healthy'): 272, np.str_('mango_rotten'): 338}
 
- Best max_depth: None, Validation Accuracy: 0.9507
+Class Weights: {np.str_('mango_healthy'): np.float64(1.1193853427895981), np.str_('mango_rotten'): np.float64(0.9036259541984732)}
 
- Model disimpan ke: ml/models/random_forest\random_forest_mango.pkl
+=== Hyperparameter Tuning (max_depth) ===
+max_depth= 4 | Train: 0.9518 | Val: 0.9360 | Gap: 0.0158
+max_depth= 6 | Train: 0.9740 | Val: 0.9622 | Gap: 0.0117
+max_depth= 8 | Train: 0.9820 | Val: 0.9704 | Gap: 0.0116
+max_depth=10 | Train: 0.9863 | Val: 0.9754 | Gap: 0.0109
+max_depth=12 | Train: 0.9863 | Val: 0.9737 | Gap: 0.0125
+
+Best max_depth: 10, Validation Accuracy: 0.9754
+
+=== Final Model Performance ===
+Train Accuracy: 0.9863
+Val Accuracy: 0.9754
+Test Accuracy: 0.9770
+Overfitting Gap: 0.0109
+
+=== Classification Report (Test Set) ===
+               precision    recall  f1-score   support
+
+mango_healthy       0.98      0.97      0.97       272
+ mango_rotten       0.97      0.99      0.98       338
+
+     accuracy                           0.98       610
+    macro avg       0.98      0.98      0.98       610
+ weighted avg       0.98      0.98      0.98       610
+
+
+Model disimpan ke: ml/models/random_forest\random_forest_mango.pkl
 Hasil training JSON disimpan ke: ml/results/random_forest/train\training_results.json
 Grafik training-validation disimpan
 Grafik overfitting disimpan
+Confusion matrix disimpan
 Tabel summary disimpan
 
  Training selesai tanpa error!

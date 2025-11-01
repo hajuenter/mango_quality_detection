@@ -1,29 +1,32 @@
 Loading model...
 
-Top 16 Most Important Features:
+Top 20 Most Important Features:
 ==================================================
- 1. B_std           : 0.153705
- 2. R_mean          : 0.089803
- 3. LBP_bin_6       : 0.067611
- 4. LBP_bin_1       : 0.065253
- 5. LBP_bin_2       : 0.061416
- 6. B_mean          : 0.061123
- 7. LBP_bin_4       : 0.058915
- 8. LBP_bin_5       : 0.058496
- 9. LBP_bin_3       : 0.058345
-10. G_std           : 0.057035
-11. LBP_bin_8       : 0.056760
-12. R_std           : 0.054687
-13. LBP_bin_0       : 0.052075
-14. G_mean          : 0.037765
-15. LBP_bin_7       : 0.035768
-16. LBP_bin_9       : 0.031244
+ 1. edge_density         : 0.123015
+ 2. H_mean               : 0.073788
+ 3. num_contours         : 0.067104
+ 4. V_std                : 0.063648
+ 5. B_std                : 0.049754
+ 6. LBP_bin_4            : 0.047500
+ 7. smoothness           : 0.047119
+ 8. contrast             : 0.042857
+ 9. LBP_bin_6            : 0.042264
+10. entropy              : 0.033740
+11. LBP_bin_1            : 0.033347
+12. LBP_bin_3            : 0.032663
+13. skewness             : 0.028736
+14. LBP_bin_2            : 0.028153
+15. LBP_bin_8            : 0.026843
+16. H_std                : 0.024966
+17. R_mean               : 0.023630
+18. LBP_bin_9            : 0.022468
+19. G_std                : 0.022120
+20. LBP_bin_7            : 0.021877
 
 Feature importance disimpan ke: ml/results/random_forest/features\feature_importance.json
 Top feature importance disimpan
-Feature type comparison disimpan
-Color feature importance disimpan
-LBP importance distribution disimpan
+Feature type contribution disimpan
+Feature group importance disimpan
 
 ==================================================
 Feature importance analysis selesai!

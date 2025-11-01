@@ -4,7 +4,7 @@ import numpy as np
 from collections import Counter
 
 # ================== Konfigurasi ==================
-DATASET_DIR = "ml/dataset/mango_dataset_ml_v2_split/train"
+DATASET_DIR = "ml/dataset/mango_dataset_ml_split/train"
 IMAGE_SIZE = (224, 224)  # ukuran resize gambar
 VALID_EXT = (".jpg", ".jpeg", ".png")
 # =================================================

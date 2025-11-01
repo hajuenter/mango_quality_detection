@@ -3,8 +3,8 @@ import shutil
 from sklearn.model_selection import train_test_split
 
 # 📁 Path dataset
-DATASET_DIR = "ml/dataset/mango_dataset_ml_v2"
-OUTPUT_DIR = "ml/dataset/mango_dataset_ml_v2_split"
+DATASET_DIR = "ml/dataset/mango_dataset_ml"
+OUTPUT_DIR = "ml/dataset/mango_dataset_ml_split"
 
 # 🔢 Rasio split
 TRAIN_RATIO = 0.7

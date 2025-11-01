@@ -1,31 +1,67 @@
-Loading model...
-Loading test dataset...
-Predicting...
-Hasil test disimpan ke: ml/results/random_forest/test\test_results.json
-Confusion matrix disimpan
-Per-class metrics disimpan
-Overall metrics disimpan
+============================================================
+EVALUASI MODEL RANDOM FOREST - TEST SET
+============================================================
 
-==================================================
-HASIL EVALUASI TEST SET
-==================================================
-Akurasi Test: 0.9623
-Precision: 0.9624
-Recall: 0.9623
-F1-Score: 0.9623
+[1/5] Loading model...
+Model loaded from: ml/models/random_forest/random_forest_mango.pkl
+Model type: RandomForestClassifier
+Number of estimators: 150
+Max depth: 10
 
-Confusion Matrix:
-[[258  14]
- [  9 329]]
+[2/5] Loading test dataset...
+  - mango_healthy: 272 images
+  - mango_rotten: 338 images
 
-Classification Report:
+Test set loaded: 610 samples, 29 features
+Distribution: {np.str_('mango_healthy'): 272, np.str_('mango_rotten'): 338}
+
+[3/5] Predicting...
+Predictions completed
+  - Default method (threshold 0.5)
+  - Threshold method (threshold 0.65)
+
+[4/5] Computing metrics...
+
+Default Method (0.5):
+  Accuracy:  0.9770
+  Precision: 0.9771
+  Recall:    0.9770
+  F1-Score:  0.9770
+
+Threshold Method (0.65):
+  Accuracy:  0.9541
+  Precision: 0.9564
+  Recall:    0.9541
+  F1-Score:  0.9542
+
+[5/5] Results saved to: ml/results/random_forest/test\test_results.json
+
+Generating visualizations...
+Confusion matrix comparison saved
+Per-class metrics comparison saved
+Overall metrics comparison saved
+ROC curve saved
+
+============================================================
+SUMMARY - BEST METHOD RECOMMENDATION
+============================================================
+RECOMMENDATION: Use Default Method (0.5)
+Accuracy difference: +0.0230
+
+============================================================
+DETAILED CLASSIFICATION REPORT - THRESHOLD METHOD
+============================================================
                precision    recall  f1-score   support
 
-mango_healthy       0.97      0.95      0.96       272
- mango_rotten       0.96      0.97      0.97       338
+mango_healthy       0.92      0.99      0.95       272
+ mango_rotten       0.99      0.93      0.96       338
 
-     accuracy                           0.96       610
-    macro avg       0.96      0.96      0.96       610
- weighted avg       0.96      0.96      0.96       610
+     accuracy                           0.95       610
+    macro avg       0.95      0.96      0.95       610
+ weighted avg       0.96      0.95      0.95       610
 
-==================================================
+
+============================================================
+Test evaluation completed successfully!
+All results saved to: ml/results/random_forest/test
+============================================================

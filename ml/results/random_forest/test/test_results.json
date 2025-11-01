@@ -1,39 +1,136 @@
 {
-    "timestamp": "2025-10-26 08:41:39",
+    "timestamp": "2025-10-26 21:12:58",
     "model_path": "ml/models/random_forest/random_forest_mango.pkl",
     "test_samples": 610,
+    "feature_dimension": 29,
     "classes": [
         "mango_healthy",
         "mango_rotten"
     ],
-    "metrics": {
-        "accuracy": 0.9622950819672131,
-        "precision": 0.9623533480439515,
-        "recall": 0.9622950819672131,
-        "f1_score": 0.9622586157699488
+    "distribution": {
+        "mango_healthy": 272,
+        "mango_rotten": 338
     },
-    "per_class_metrics": {
-        "mango_healthy": {
-            "precision": 0.9662921348314607,
-            "recall": 0.9485294117647058,
-            "f1_score": 0.9573283858998145,
-            "support": 272
+    "methods": {
+        "default": {
+            "threshold": 0.5,
+            "metrics": {
+                "accuracy": 0.9770491803278688,
+                "precision": 0.9770994037577428,
+                "recall": 0.9770491803278688,
+                "f1_score": 0.9770316797028465,
+                "confusion_matrix": [
+                    [
+                        263,
+                        9
+                    ],
+                    [
+                        5,
+                        333
+                    ]
+                ],
+                "report": {
+                    "mango_healthy": {
+                        "precision": 0.9813432835820896,
+                        "recall": 0.9669117647058824,
+                        "f1-score": 0.9740740740740741,
+                        "support": 272.0
+                    },
+                    "mango_rotten": {
+                        "precision": 0.9736842105263158,
+                        "recall": 0.985207100591716,
+                        "f1-score": 0.9794117647058823,
+                        "support": 338.0
+                    },
+                    "accuracy": 0.9770491803278688,
+                    "macro avg": {
+                        "precision": 0.9775137470542027,
+                        "recall": 0.9760594326487992,
+                        "f1-score": 0.9767429193899781,
+                        "support": 610.0
+                    },
+                    "weighted avg": {
+                        "precision": 0.9770994037577428,
+                        "recall": 0.9770491803278688,
+                        "f1-score": 0.9770316797028465,
+                        "support": 610.0
+                    }
+                }
+            },
+            "per_class": {
+                "mango_healthy": {
+                    "precision": 0.9813432835820896,
+                    "recall": 0.9669117647058824,
+                    "f1_score": 0.9740740740740741,
+                    "support": 272
+                },
+                "mango_rotten": {
+                    "precision": 0.9736842105263158,
+                    "recall": 0.985207100591716,
+                    "f1_score": 0.9794117647058823,
+                    "support": 338
+                }
+            }
         },
-        "mango_rotten": {
-            "precision": 0.9591836734693877,
-            "recall": 0.9733727810650887,
-            "f1_score": 0.9662261380323054,
-            "support": 338
+        "threshold_tuned": {
+            "threshold": 0.65,
+            "metrics": {
+                "accuracy": 0.9540983606557377,
+                "precision": 0.9563807594908104,
+                "recall": 0.9540983606557377,
+                "f1_score": 0.9542124993974042,
+                "confusion_matrix": [
+                    [
+                        268,
+                        4
+                    ],
+                    [
+                        24,
+                        314
+                    ]
+                ],
+                "report": {
+                    "mango_healthy": {
+                        "precision": 0.9178082191780822,
+                        "recall": 0.9852941176470589,
+                        "f1-score": 0.950354609929078,
+                        "support": 272.0
+                    },
+                    "mango_rotten": {
+                        "precision": 0.9874213836477987,
+                        "recall": 0.9289940828402367,
+                        "f1-score": 0.9573170731707317,
+                        "support": 338.0
+                    },
+                    "accuracy": 0.9540983606557377,
+                    "macro avg": {
+                        "precision": 0.9526148014129405,
+                        "recall": 0.9571441002436478,
+                        "f1-score": 0.9538358415499049,
+                        "support": 610.0
+                    },
+                    "weighted avg": {
+                        "precision": 0.9563807594908104,
+                        "recall": 0.9540983606557377,
+                        "f1-score": 0.9542124993974042,
+                        "support": 610.0
+                    }
+                }
+            },
+            "per_class": {
+                "mango_healthy": {
+                    "precision": 0.9178082191780822,
+                    "recall": 0.9852941176470589,
+                    "f1_score": 0.950354609929078,
+                    "support": 272
+                },
+                "mango_rotten": {
+                    "precision": 0.9874213836477987,
+                    "recall": 0.9289940828402367,
+                    "f1_score": 0.9573170731707317,
+                    "support": 338
+                }
+            }
         }
-    },
-    "confusion_matrix": [
-        [
-            258,
-            14
-        ],
-        [
-            9,
-            329
-        ]
-    ]
+    }
 }
