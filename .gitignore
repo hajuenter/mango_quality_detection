@@ -9,6 +9,7 @@ ml/models/
 *.log
 *.tmp
 
+server/app/config/mango-db.json
+
 .vscode/
 .idea/
-yolov8s-cls.pt
