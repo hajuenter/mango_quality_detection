@@ -2,7 +2,9 @@ from datetime import datetime
 from app.config.firebase_db import firebase_db
 
 
-def save_detection_to_firestore(result, image_path):
+def save_detection_to_firestore(
+    result, image_path, season_name=None, season_status="none"
+):
     try:
         now = datetime.now()
 
@@ -15,6 +17,8 @@ def save_detection_to_firestore(result, image_path):
             "year": now.strftime("%Y"),
             "image_url": image_path,
             "method": result["method"],
+            "season_name": season_name,
+            "season_status": season_status,
         }
 
         firebase_db.collection("mango_detections").add(detection_data)

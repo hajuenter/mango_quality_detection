@@ -7,6 +7,7 @@ from app.services.model_service import predict_image
 from app.services.detection_service import save_detection_to_firestore
 from app.schemas.predict_schema import PredictSchema
 from app.config.config import Config
+from app.services.season_service import get_active_season
 
 
 def predict_controller():
@@ -30,18 +31,23 @@ def predict_controller():
 
         # Jalankan prediksi
         result = predict_image(file_path)
+        active_season = get_active_season()
+        season_name = active_season["name"] if active_season else None
+        season_status = active_season["status"] if active_season else "none"
 
         # Simpan hasil ke Firestore (gunakan URL publik)
         detection_data = save_detection_to_firestore(
             result=result,
             image_path=public_url,
+            season_name=season_name,
+            season_status=season_status,
         )
 
         return (
             jsonify(
                 {
                     "success": True,
-                    "message": "✅ Prediksi berhasil dan disimpan ke Firestore.",
+                    "message": "Prediksi berhasil dan disimpan ke Firestore.",
                     "result": result,
                     "saved": detection_data,
                 }
