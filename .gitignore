@@ -9,6 +9,6 @@ ml/dataset/
 *.tmp
 
 server/app/config/mango-db.json
-
+server/app/uploads/*
 .vscode/
 .idea/
