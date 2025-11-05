@@ -2,11 +2,63 @@
 
 API untuk deteksi kondisi mangga (sehat/busuk) menggunakan machine learning dengan Flask backend, Firebase Authentication, dan Firestore database.
 
+---
+
+## Setup Virtual Environment (venv)
+
+Ikuti langkah-langkah berikut untuk menyiapkan environment Python:
+
+### 1. Clone Repository
+
+```bash
+git clone https://github.com/hajuenter/mango_quality_detection.git
+cd mango_quality_detection
+```
+
+### 2. Buat Virtual Environment
+
+```bash
+python -m venv venv
+```
+
+### 3. Aktivasi Virtual Environment
+
+**Windows:**
+
+```bash
+venv\Scripts\activate
+```
+
+**Linux/Mac:**
+
+```bash
+source venv/bin/activate
+```
+
+### 4. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## Cara Menjalankan
+
+```bash
+cd server/ # Pindah dulu ke direktori server
+python main.py # Running
+```
+
+---
+
 ## Base URL
 
 ```
+
 http://127.0.0.1:5000
-http://192.168.1.7:5000   # Jika diakses dari HP dalam 1 WiFi atau bisa gunakan IP Adress yang sama
+http://192.168.1.7:5000 # Jika diakses dari HP dalam 1 WiFi atau bisa gunakan IP Adress yang sama
+
 ```
 
 ## Tech Stack
@@ -25,7 +77,9 @@ Sebagian besar endpoint dilindungi oleh Firebase Authentication. Gunakan token I
 ### Header Format
 
 ```
+
 Authorization: Bearer <firebase_id_token>
+
 ```
 
 ### Error Response (Unauthorized)
