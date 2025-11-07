@@ -16,3 +16,10 @@ class Config:
 
     UPLOAD_FOLDER = os.path.join(BASE_DIR_UP, "uploads")
     os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
+    BASE_URL = "http://127.0.0.1:5000"
+
+    @staticmethod
+    def get_public_url(filename):
+        """Generate public URL untuk file uploads"""
+        return f"{Config.BASE_URL}/uploads/{filename}"

@@ -1,7 +1,5 @@
 from flask import Response
-from app.services.video_service import VideoService
-
-video_service = VideoService()
+from app.services.video_service import video_service
 
 
 def get_video_feed_controller():

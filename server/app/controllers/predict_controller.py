@@ -26,8 +26,8 @@ def predict_controller():
         file_path = os.path.join(Config.UPLOAD_FOLDER, filename)
         file.save(file_path)
 
-        # Buat URL publik agar bisa diakses Flutter
-        public_url = f"{request.host_url}uploads/{filename}"
+        # Buat URL publik menggunakan Config (konsisten)
+        public_url = Config.get_public_url(filename)
 
         # Jalankan prediksi
         result = predict_image(file_path)
@@ -35,7 +35,7 @@ def predict_controller():
         season_name = active_season["name"] if active_season else None
         season_status = active_season["status"] if active_season else "none"
 
-        # Simpan hasil ke Firestore (gunakan URL publik)
+        # Simpan hasil ke Firestore
         detection_data = save_detection_to_firestore(
             result=result,
             image_path=public_url,

@@ -6,6 +6,7 @@ from app.routes.detection_route import detection_bp
 from app.routes.video_route import video_bp
 from app.routes.file_route import file_bp
 from app.routes.season_route import season_bp
+from app.routes.status_route import status_bp
 
 
 def create_app():
@@ -19,5 +20,6 @@ def create_app():
     app.register_blueprint(video_bp)
     app.register_blueprint(file_bp)
     app.register_blueprint(season_bp)
+    app.register_blueprint(status_bp)
 
     return app
