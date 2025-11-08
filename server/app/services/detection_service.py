@@ -1,4 +1,5 @@
 from datetime import datetime
+import pytz
 from app.config.firebase_db import firebase_db
 
 
@@ -6,7 +7,8 @@ def save_detection_to_firestore(
     result, image_path, season_name=None, season_status="none"
 ):
     try:
-        now = datetime.now()
+        tz = pytz.timezone("Asia/Jakarta")
+        now = datetime.now(tz)
 
         detection_data = {
             "label": result["label"],
@@ -22,7 +24,6 @@ def save_detection_to_firestore(
         }
 
         firebase_db.collection("mango_detections").add(detection_data)
-
         return detection_data
 
     except Exception as e:
