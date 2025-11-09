@@ -16,6 +16,7 @@ from datetime import datetime
 import joblib
 import sys
 from collections import Counter
+import pandas as pd
 
 from features import extract_features
 
@@ -346,6 +347,87 @@ if len(classes) == 2:
     print("ROC curve saved")
 
 plt.close("all")
+
+print("\n[6/6] Exporting analysis results with tree voting to Excel...")
+
+feature_importances = rf_best.feature_importances_
+feature_names = [f"feature_{i+1}" for i in range(len(feature_importances))]
+
+df_features = pd.DataFrame(
+    {"Feature": feature_names, "Importance": feature_importances}
+).sort_values(by="Importance", ascending=False)
+
+per_class_data = []
+for cls in classes:
+    per_class_data.append(
+        {
+            "Class": cls,
+            "Precision": results["methods"]["threshold_tuned"]["per_class"][cls][
+                "precision"
+            ],
+            "Recall": results["methods"]["threshold_tuned"]["per_class"][cls]["recall"],
+            "F1-Score": results["methods"]["threshold_tuned"]["per_class"][cls][
+                "f1_score"
+            ],
+            "Support": results["methods"]["threshold_tuned"]["per_class"][cls][
+                "support"
+            ],
+        }
+    )
+df_per_class = pd.DataFrame(per_class_data)
+
+df_predictions = pd.DataFrame(
+    {
+        "True Label": y_test,
+        "Predicted Label": y_pred_threshold,
+        "Proba Rotten": y_pred_proba[:, rotten_idx],
+    }
+)
+
+print("Mengambil voting dari setiap pohon dalam Random Forest...")
+
+all_tree_preds = np.array([tree.predict(X_test) for tree in rf_best.estimators_]).T
+
+if np.issubdtype(all_tree_preds.dtype, np.number):
+    label_map = {i: cls for i, cls in enumerate(rf_best.classes_)}
+    all_tree_preds = np.vectorize(label_map.get)(all_tree_preds)
+
+voting_data = []
+for i, (true_label, final_pred, probs) in enumerate(
+    zip(y_test, y_pred_threshold, y_pred_proba)
+):
+    votes = all_tree_preds[i]
+    count_healthy = np.sum(votes == "mango_healthy")
+    count_rotten = np.sum(votes == "mango_rotten")
+    total_trees = len(votes)
+    percent_rotten = count_rotten / total_trees
+    percent_healthy = count_healthy / total_trees
+
+    voting_data.append(
+        {
+            "Sample Index": i + 1,
+            "True Label": true_label,
+            "Predicted Label": final_pred,
+            "Proba Rotten": probs[rotten_idx],
+            "Votes Healthy": int(count_healthy),
+            "Votes Rotten": int(count_rotten),
+            "Total Trees": total_trees,
+            "% Healthy": round(percent_healthy * 100, 2),
+            "% Rotten": round(percent_rotten * 100, 2),
+        }
+    )
+
+df_voting = pd.DataFrame(voting_data)
+
+# --- Simpan semua ke Excel ---
+excel_path = os.path.join(RESULTS_DIR, "random_forest_analysis.xlsx")
+with pd.ExcelWriter(excel_path, engine="openpyxl") as writer:
+    df_features.to_excel(writer, index=False, sheet_name="Feature Importance")
+    df_per_class.to_excel(writer, index=False, sheet_name="Per Class Metrics")
+    df_predictions.to_excel(writer, index=False, sheet_name="Predictions")
+    df_voting.to_excel(writer, index=False, sheet_name="Voting Detail")
+
+print(f"Excel hasil analisis lengkap disimpan ke: {excel_path}")
 
 
 print("\n" + "=" * 60)

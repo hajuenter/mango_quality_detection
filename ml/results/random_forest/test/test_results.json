@@ -1,5 +1,5 @@
 {
-    "timestamp": "2025-10-26 21:12:58",
+    "timestamp": "2025-11-08 21:29:29",
     "model_path": "ml/models/random_forest/random_forest_mango.pkl",
     "test_samples": 610,
     "feature_dimension": 29,

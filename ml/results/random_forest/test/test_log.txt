@@ -42,6 +42,10 @@ Per-class metrics comparison saved
 Overall metrics comparison saved
 ROC curve saved
 
+[6/6] Exporting analysis results with tree voting to Excel...
+Mengambil voting dari setiap pohon dalam Random Forest...
+Excel hasil analisis lengkap disimpan ke: ml/results/random_forest/test\random_forest_analysis.xlsx
+
 ============================================================
 SUMMARY - BEST METHOD RECOMMENDATION
 ============================================================
