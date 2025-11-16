@@ -1,0 +1,11 @@
+Memulai proses split dataset...
+
+mango_healthy: Total=1813, Train=1269, Val=272, Test=272
+mango_rotten: Total=2247, Train=1572, Val=337, Test=338
+
+Total sebelum split : 4060
+Train total         : 2841
+Val total           : 609
+Test total          : 610
+Total setelah split : 4060
+Semua gambar terdistribusi dengan benar.

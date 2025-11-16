@@ -1,0 +1,31 @@
+{
+    "split_time": "2025-11-11 21:17:34",
+    "dataset_dir": "ml/dataset/mango_dataset_ml",
+    "output_dir": "ml/dataset/mango_dataset_ml_split",
+    "ratios": {
+        "train": 0.7,
+        "val": 0.15,
+        "test": 0.15
+    },
+    "classes": {
+        "mango_healthy": {
+            "total": 1813,
+            "train": 1269,
+            "val": 272,
+            "test": 272
+        },
+        "mango_rotten": {
+            "total": 2247,
+            "train": 1572,
+            "val": 337,
+            "test": 338
+        }
+    },
+    "totals": {
+        "before": 4060,
+        "train": 2841,
+        "val": 609,
+        "test": 610,
+        "after": 4060
+    }
+}

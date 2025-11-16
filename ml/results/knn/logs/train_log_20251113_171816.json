@@ -1,0 +1,62 @@
+{
+    "timestamp": "20251113_171816",
+    "model": "KNeighborsClassifier",
+    "best_params": {
+        "metric": "manhattan",
+        "n_neighbors": 3,
+        "weights": "distance"
+    },
+    "best_cv_accuracy": 0.9498550724637681,
+    "test_accuracy": 0.9540983606557377,
+    "confusion_matrix": [
+        [
+            255,
+            17
+        ],
+        [
+            11,
+            327
+        ]
+    ],
+    "classification_report": {
+        "healthy": {
+            "precision": 0.9586466165413534,
+            "recall": 0.9375,
+            "f1-score": 0.9479553903345725,
+            "support": 272.0
+        },
+        "rotten": {
+            "precision": 0.9505813953488372,
+            "recall": 0.9674556213017751,
+            "f1-score": 0.9589442815249267,
+            "support": 338.0
+        },
+        "accuracy": 0.9540983606557377,
+        "macro avg": {
+            "precision": 0.9546140059450954,
+            "recall": 0.9524778106508875,
+            "f1-score": 0.9534498359297496,
+            "support": 610.0
+        },
+        "weighted avg": {
+            "precision": 0.9541776907002542,
+            "recall": 0.9540983606557377,
+            "f1-score": 0.954044316928572,
+            "support": 610.0
+        }
+    },
+    "dataset_info": {
+        "train_val_size": 3450,
+        "test_size": 610,
+        "train_val_distribution": {
+            "0": 1541,
+            "1": 1909
+        },
+        "test_distribution": {
+            "0": 272,
+            "1": 338
+        }
+    },
+    "model_path": "ml/models/knn\\knn_best_model_20251113_171816.pkl",
+    "scaler_path": "ml/models/knn\\scaler_20251113_171816.pkl"
+}

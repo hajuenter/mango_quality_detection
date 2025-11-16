@@ -1,0 +1,29 @@
+=== Dataset Info ===
+Train/Val samples: 3450 | Test samples: 610
+Train/Val distribution: {np.int64(0): 1541, np.int64(1): 1909}
+Test distribution: {np.int64(0): 272, np.int64(1): 338}
+
+Best Parameters: {'metric': 'manhattan', 'n_neighbors': 3, 'weights': 'distance'}
+Best CV Accuracy: 0.9499
+
+=== TEST PERFORMANCE ===
+Accuracy: 0.9541
+Confusion Matrix:
+[[255  17]
+ [ 11 327]]
+              precision    recall  f1-score   support
+
+     healthy       0.96      0.94      0.95       272
+      rotten       0.95      0.97      0.96       338
+
+    accuracy                           0.95       610
+   macro avg       0.95      0.95      0.95       610
+weighted avg       0.95      0.95      0.95       610
+
+Model disimpan: ml/models/knn\knn_best_model_20251113_171816.pkl
+Scaler disimpan: ml/models/knn\scaler_20251113_171816.pkl
+Log tersimpan ke:
+- ml/results/knn\logs\train_log_20251113_171816.txt
+- ml/results/knn\logs\train_log_20251113_171816.json
+Visualisasi tersimpan di: ml/results/knn\train
+Training selesai tanpa error!
