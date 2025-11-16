@@ -6,9 +6,12 @@ class Config:
         os.path.join(os.path.dirname(__file__), "..", "..", "..")
     )
 
-    MODEL_PATH = os.path.join(
-        BASE_DIR, "ml", "models", "random_forest", "random_forest_mango.pkl"
-    )
+    # MODEL_PATH = os.path.join(
+    #     BASE_DIR, "ml", "models", "random_forest", "random_forest_mango.pkl"
+    # )
+
+    MODEL_PATH = os.path.join(BASE_DIR, "ml", "models", "knn", "knn_mango.pkl")
+    SCALER_PATH = os.path.join(BASE_DIR, "ml", "models", "knn", "scaler.pkl")
 
     FIREBASE_CRED_PATH = os.path.join(os.path.dirname(__file__), "mango-db.json")
 
@@ -17,7 +20,7 @@ class Config:
     UPLOAD_FOLDER = os.path.join(BASE_DIR_UP, "uploads")
     os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
-    BASE_URL = "http://127.0.0.1:5000"
+    BASE_URL = "http://172.28.48.1:5000"
 
     @staticmethod
     def get_public_url(filename):

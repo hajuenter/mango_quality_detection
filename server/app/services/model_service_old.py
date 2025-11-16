@@ -4,70 +4,55 @@ import joblib
 import numpy as np
 from app.config.config import Config
 
-# Path root project
 PROJECT_ROOT = os.path.abspath(
     os.path.join(os.path.dirname(__file__), "..", "..", "..")
 )
 sys.path.append(PROJECT_ROOT)
 
-from ml.scripts.knn.features import (
-    extract_features,
-)
+from ml.scripts.random_forest.features import extract_features
 
 THRESHOLD_ROTTEN = 0.5
 
-# Pastikan model & scaler ada
+# Pastikan model ada
 if not os.path.exists(Config.MODEL_PATH):
     raise FileNotFoundError(f"❌ Model file tidak ditemukan di: {Config.MODEL_PATH}")
 
-if not os.path.exists(Config.SCALER_PATH):
-    raise FileNotFoundError(f"❌ Scaler file tidak ditemukan di: {Config.SCALER_PATH}")
-
-# Load model dan scaler sekali saja
+# Load model hanya sekali
 model = joblib.load(Config.MODEL_PATH)
-scaler = joblib.load(Config.SCALER_PATH)
 
 
 def predict_image(image_path, use_threshold=False):
     """
-    Prediksi gambar mangga menggunakan model KNN.
-    Label:
-      0 -> mango_healthy
-      1 -> mango_rotten
+    Prediksi gambar mangga menggunakan Random Forest.
     """
     try:
-        # Ekstraksi fitur dari gambar
         features = extract_features(image_path)
         features = np.expand_dims(features, axis=0)
 
-        # Normalisasi dengan scaler
-        features_scaled = scaler.transform(features)
+        pred_proba = model.predict_proba(features)[0]
+        classes = model.classes_.tolist()
 
-        # Prediksi probabilitas (untuk KNN, ini rata-rata voting distance)
-        pred_proba = model.predict_proba(features_scaled)[0]
+        healthy_idx = classes.index("mango_healthy")
+        rotten_idx = classes.index("mango_rotten")
 
-        healthy_prob = float(pred_proba[0])
-        rotten_prob = float(pred_proba[1])
-
-        # Threshold manual opsional
+        # Gunakan threshold manual (opsional)
         if use_threshold:
-            if rotten_prob >= THRESHOLD_ROTTEN:
+            if pred_proba[rotten_idx] >= THRESHOLD_ROTTEN:
                 pred_label = "mango_rotten"
             else:
                 pred_label = "mango_healthy"
             method = f"threshold_{THRESHOLD_ROTTEN}"
         else:
-            pred_class = int(model.predict(features_scaled)[0])
-            pred_label = "mango_rotten" if pred_class == 1 else "mango_healthy"
+            pred_label = model.predict(features)[0]
             method = "default_0.5"
 
-        confidence = float(max(healthy_prob, rotten_prob))
+        confidence = float(max(pred_proba))
 
         return {
             "label": pred_label,
             "probabilities": {
-                "mango_healthy": healthy_prob,
-                "mango_rotten": rotten_prob,
+                "mango_healthy": float(pred_proba[healthy_idx]),
+                "mango_rotten": float(pred_proba[rotten_idx]),
             },
             "confidence": confidence,
             "method": method,

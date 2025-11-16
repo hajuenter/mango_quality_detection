@@ -3,49 +3,42 @@ import os
 import traceback
 from werkzeug.utils import secure_filename
 from marshmallow import ValidationError
-from app.services.model_service import predict_image
+from app.services.model_service_old import predict_image
 from app.services.detection_service import save_detection_to_firestore
 from app.schemas.predict_schema import PredictSchema
 from app.config.config import Config
 from app.services.season_service import get_active_season
-from app.config.imagekit_config import upload_to_imagekit
 
 
 def predict_controller():
+    """
+    Handle request prediksi gambar mangga
+    """
     schema = PredictSchema()
-    file_path = None  # Track file path untuk cleanup
 
     try:
         # Ambil file dari form-data
         file = request.files.get("file")
         schema.load({"file": file})  # Validasi file upload
 
-        # Simpan file sementara di folder uploads
+        # Simpan file di folder uploads
         filename = secure_filename(file.filename)
         file_path = os.path.join(Config.UPLOAD_FOLDER, filename)
         file.save(file_path)
 
-        # Jalankan prediksi (menggunakan file lokal)
+        # Buat URL publik menggunakan Config (konsisten)
+        public_url = Config.get_public_url(filename)
+
+        # Jalankan prediksi
         result = predict_image(file_path)
-
-        # Upload ke ImageKit setelah prediksi berhasil
-        imagekit_url = upload_to_imagekit(file_path, filename)
-
-        # Hapus file lokal setelah upload ke ImageKit
-        try:
-            os.remove(file_path)
-        except Exception as cleanup_error:
-            print(f"⚠️ Warning: Gagal hapus file lokal: {cleanup_error}")
-
-        # Get season info
         active_season = get_active_season()
         season_name = active_season["name"] if active_season else None
         season_status = active_season["status"] if active_season else "none"
 
-        # Simpan hasil ke Firestore (dengan URL ImageKit)
+        # Simpan hasil ke Firestore
         detection_data = save_detection_to_firestore(
             result=result,
-            image_path=imagekit_url,  # Gunakan URL ImageKit, bukan lokal
+            image_path=public_url,
             season_name=season_name,
             season_status=season_status,
         )
@@ -63,18 +56,7 @@ def predict_controller():
         )
 
     except ValidationError as err:
-        if file_path and os.path.exists(file_path):
-            try:
-                os.remove(file_path)
-            except:
-                pass
         return jsonify({"success": False, "errors": err.messages}), 400
-
     except Exception as e:
-        if file_path and os.path.exists(file_path):
-            try:
-                os.remove(file_path)
-            except:
-                pass
         print("❌ Error di predict_controller:", traceback.format_exc())
         return jsonify({"success": False, "error": str(e)}), 500
